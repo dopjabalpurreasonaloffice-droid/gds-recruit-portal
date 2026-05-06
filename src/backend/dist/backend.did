@@ -1,0 +1,492 @@
+type VacancyId = nat;
+type Vacancy = 
+ record {
+   basicPay: nat;
+   branchOfficeName: text;
+   category: text;
+   circle: text;
+   createdAt: int;
+   division: text;
+   filledSeats: nat;
+   id: VacancyId;
+   isActive: bool;
+   postType: text;
+   totalSeats: nat;
+ };
+type UserRole = 
+ variant {
+   admin;
+   applicant;
+ };
+type UserId = nat;
+type User = 
+ record {
+   aadhaar: text;
+   address: AddressType;
+   category: text;
+   createdAt: Timestamp;
+   dob: text;
+   email: text;
+   gender: text;
+   id: UserId;
+   isVerified: bool;
+   mobile: text;
+   name: text;
+   photoUrl: opt text;
+   "principal": principal;
+   role: UserRole;
+   signatureUrl: opt text;
+   subcategory: text;
+ };
+type UpdateCategory = 
+ variant {
+   officialLetter;
+   recruitment;
+   tender;
+ };
+type Timestamp = int;
+type SubjectMark = 
+ record {
+   marksOrGrade: text;
+   subject: text;
+ };
+type ShortlistedCandidate = 
+ record {
+   applicationId: ApplicationId;
+   candidateName: text;
+   category: text;
+   circle: text;
+   division: text;
+   id: CandidateId;
+   rank: nat;
+   rollNumber: text;
+   state: text;
+ };
+type ResultType = 
+ variant {
+   CGPA;
+   GradePoint;
+   Percentage;
+ };
+type Preferences = 
+ record {
+   circle: text;
+   division: text;
+   postCategory: text;
+   state: text;
+ };
+type PostPreference = 
+ record {
+   basicPay: nat;
+   branchOfficeName: text;
+   category: text;
+   postType: text;
+   preferenceNo: nat;
+ };
+type Post = 
+ record {
+   category: text;
+   obcPosts: nat;
+   scPosts: nat;
+   stPosts: nat;
+   totalPosts: nat;
+   urPosts: nat;
+ };
+type PaymentStatus = 
+ variant {
+   failed;
+   notRequired;
+   pending;
+   success;
+ };
+type PaymentMethod = 
+ variant {
+   card;
+   netbanking;
+   upi;
+ };
+type PaymentId = nat;
+type Payment = 
+ record {
+   amount: nat;
+   applicationId: ApplicationId;
+   createdAt: Timestamp;
+   id: PaymentId;
+   method: PaymentMethod;
+   status: PaymentStatus;
+   transactionId: text;
+   userId: UserId;
+ };
+type OfficialUpdate = 
+ record {
+   category: UpdateCategory;
+   content: text;
+   createdBy: text;
+   date: Timestamp;
+   id: text;
+   isActive: bool;
+   isNew: bool;
+   pdfUrl: opt text;
+   title: text;
+ };
+type NotificationId = nat;
+type Notification = 
+ record {
+   content: text;
+   createdBy: UserId;
+   date: Timestamp;
+   id: NotificationId;
+   isActive: bool;
+   notifType: NotifType;
+   title: text;
+ };
+type NotifType = 
+ variant {
+   general;
+   important;
+   urgent;
+ };
+type HttpResponse = 
+ record {
+   body: blob;
+   headers: vec HttpHeader;
+   status: nat;
+ };
+type HttpHeader = 
+ record {
+   name: text;
+   value: text;
+ };
+type FeeStatus = 
+ variant {
+   Failed;
+   Paid;
+   Pending;
+ };
+type EducationDetails = 
+ record {
+   boardName: text;
+   marksObtained: nat;
+   percentage: float64;
+   totalMarks: nat;
+   yearOfPassing: text;
+ };
+type DocumentType = 
+ variant {
+   Aadhaar;
+   AttestationForm;
+   CasteCertificate;
+   CharacterCertificate;
+   ComputerCertificate;
+   Domicile;
+   IdentityCertificate;
+   IncomeCertificate;
+   MedicalCertificate;
+   PanCard;
+   Photo;
+   RegistrationForm;
+   Signature;
+   TenthCertificate;
+   TwelfthCertificate;
+ };
+type DocumentId = nat;
+type Document = 
+ record {
+   candidateId: AdminCandidateId;
+   documentType: DocumentType;
+   fileKey: text;
+   fileName: text;
+   id: DocumentId;
+   registrationNo: text;
+   uploadedAt: int;
+ };
+type Division = 
+ record {
+   id: nat;
+   name: text;
+   posts: vec Post;
+ };
+type CircleId = nat;
+type Circle = 
+ record {
+   circleName: text;
+   divisions: vec Division;
+   id: CircleId;
+   stateName: text;
+ };
+type CandidateLoginResult = 
+ record {
+   mobile: text;
+   name: text;
+   registrationNo: text;
+   status: AdminCandidateStatus;
+   token: text;
+ };
+type CandidateId = nat;
+type ApplicationStatus = 
+ variant {
+   draft;
+   rejected;
+   shortlisted;
+   submitted;
+   underReview;
+ };
+type ApplicationId = nat;
+type Application = 
+ record {
+   createdAt: Timestamp;
+   documentUrls: vec text;
+   educationDetails: EducationDetails;
+   id: ApplicationId;
+   paymentStatus: PaymentStatus;
+   preferences: Preferences;
+   status: ApplicationStatus;
+   submittedAt: opt Timestamp;
+   userId: UserId;
+ };
+type AdminCandidateStatus = 
+ variant {
+   Approved;
+   Pending;
+   Rejected;
+   Verified;
+ };
+type AdminCandidateId = nat;
+type AdminCandidate = 
+ record {
+   aadhaar: text;
+   applicationFormData: opt text;
+   boardName: text;
+   boardRemarks: text;
+   canRideBicycle: bool;
+   category: text;
+   circle: text;
+   createdAt: int;
+   declarationsAccepted: bool;
+   division: text;
+   divisionForVerification: text;
+   dob: text;
+   email: text;
+   fatherName: text;
+   feeStatus: FeeStatus;
+   gender: text;
+   id: AdminCandidateId;
+   isEmployed: bool;
+   mobile: text;
+   name: text;
+   nocAvailable: bool;
+   percentageObtained: text;
+   permanentAddress: AddressInfo;
+   ph: bool;
+   photoPath: text;
+   postPreferences: vec PostPreference;
+   presentAddress: AddressInfo;
+   registrationNo: text;
+   rejectionReason: text;
+   resultType: ResultType;
+   signaturePath: text;
+   stateOfBoard: text;
+   status: AdminCandidateStatus;
+   subjectMarks: vec SubjectMark;
+   totalCgpa: text;
+   totalGrade: text;
+   updatedAt: int;
+   yearOfPassing: text;
+ };
+type AddressType = 
+ record {
+   city: text;
+   district: text;
+   doorNo: text;
+   pincode: text;
+   state: text;
+   street: text;
+ };
+type AddressInfo = 
+ record {
+   district: text;
+   doorNo: text;
+   pincode: text;
+   state: text;
+   street: text;
+   village: text;
+ };
+service : {
+  addDocumentUrl: (id: ApplicationId, url: text) -> ();
+  adminAddCandidate: (applicationId: ApplicationId, candidateName: text,
+   rollNumber: text, state: text, circle: text, division: text, category:
+   text, rank: nat) -> (CandidateId);
+  adminAddDocument: (candidateId: AdminCandidateId, registrationNo: text,
+   documentType: DocumentType, fileKey: text, fileName: text) ->
+   (variant {
+      err: text;
+      ok: Document;
+    });
+  adminAddVacancy: (circle: text, division: text, branchOfficeName: text,
+   postType: text, category: text, basicPay: nat, totalSeats: nat) ->
+   (variant {
+      err: text;
+      ok: Vacancy;
+    });
+  adminCreateCircle: (stateName: text, circleName: text, divisions:
+   vec Division) -> (CircleId);
+  adminCreateNotification: (title: text, content: text, notifType:
+   NotifType) -> (NotificationId);
+  adminCreateOfficialUpdate: (title: text, content: text, category:
+   UpdateCategory, pdfUrl: opt text) ->
+   (variant {
+      err: text;
+      ok: OfficialUpdate;
+    });
+  adminDeactivateNotification: (id: NotificationId) -> ();
+  adminDeleteCandidate: (id: CandidateId) -> ();
+  adminDeleteCircle: (id: CircleId) -> ();
+  adminDeleteDocument: (id: DocumentId) -> (variant {
+                                              err: text;
+                                              ok;
+                                            });
+  adminDeleteNotification: (id: NotificationId) -> ();
+  adminDeleteOfficialUpdate: (id: text) -> (variant {
+                                              err: text;
+                                              ok;
+                                            });
+  adminDeleteUser: (id: UserId) -> ();
+  adminDeleteVacancy: (id: VacancyId) -> (variant {
+                                            err: text;
+                                            ok;
+                                          });
+  adminGetActiveVacancies: (division: opt text) -> (vec Vacancy) query;
+  adminGetAllCandidates: (circle: opt text, division: opt text, status:
+   opt AdminCandidateStatus) -> (vec AdminCandidate) query;
+  adminGetAllVacancies: (division: opt text) -> (vec Vacancy) query;
+  adminGetCandidate: (id: AdminCandidateId) -> (opt AdminCandidate) query;
+  adminGetCandidatesByRegistrationNo: (registrationNo: text) ->
+   (vec AdminCandidate) query;
+  adminGetDashboard: () ->
+   (record {
+      approved: nat;
+      circleStats: vec record {
+                         text;
+                         nat;
+                       };
+      divisionStats: vec record {
+                           text;
+                           nat;
+                         };
+      pending: nat;
+      rejected: nat;
+      totalCandidates: nat;
+    }) query;
+  adminGetDocuments: (candidateId: AdminCandidateId) -> (vec Document) query;
+  adminListAllNotifications: () -> (vec Notification);
+  adminListAllOfficialUpdates: () -> (vec OfficialUpdate);
+  adminListApplications: () -> (vec Application);
+  adminListApplicationsByStatus: (status: ApplicationStatus) ->
+   (vec Application);
+  adminListPayments: () -> (vec Payment);
+  adminListUsers: () -> (vec User);
+  adminLogin: (username: text, password: text) ->
+   (variant {
+      err: text;
+      ok: text;
+    });
+  adminRegisterCandidate: (name: text, fatherName: text, mobile: text, email:
+   text, aadhaar: text, dob: text, gender: text, category: text, ph: 
+   bool, canRideBicycle: bool, isEmployed: bool, nocAvailable: bool,
+   presentAddress: AddressInfo, permanentAddress: AddressInfo, boardName:
+   text, stateOfBoard: text, yearOfPassing: text, resultType: ResultType,
+   subjectMarks: vec SubjectMark, totalCgpa: text, totalGrade: text,
+   percentageObtained: text, boardRemarks: text, declarationsAccepted: 
+   bool, postPreferences: vec PostPreference, divisionForVerification: 
+   text, photoPath: text, signaturePath: text, circle: text, division: 
+   text, overrideRegistrationNo: opt text) ->
+   (variant {
+      err: text;
+      ok: AdminCandidate;
+    });
+  adminSetCandidateApplicationForm: (registrationNo: text, formData: 
+   text) -> (variant {
+               err: text;
+               ok;
+             });
+  adminSetUserRole: (id: UserId, role: UserRole) -> ();
+  adminUpdateApplicationStatus: (id: ApplicationId, status:
+   ApplicationStatus) -> ();
+  adminUpdateCandidateStatus: (id: AdminCandidateId, status:
+   AdminCandidateStatus, rejectionReason: opt text) ->
+   (variant {
+      err: text;
+      ok: AdminCandidate;
+    });
+  adminUpdateCircle: (id: CircleId, stateName: text, circleName: text,
+   divisions: vec Division) -> ();
+  adminUpdateFeeStatus: (candidateId: AdminCandidateId, feeStatus:
+   FeeStatus) -> (variant {
+                    err: text;
+                    ok: AdminCandidate;
+                  });
+  adminUpdateNotification: (id: NotificationId, title: text, content: 
+   text, notifType: NotifType) -> ();
+  adminUpdateOfficialUpdate: (id: text, title: opt text, content: opt text,
+   pdfUrl: opt text, isActive: opt bool) ->
+   (variant {
+      err: text;
+      ok: OfficialUpdate;
+    });
+  adminUpdatePaymentStatus: (id: PaymentId, status: PaymentStatus) -> ();
+  adminUpdateVacancy: (id: VacancyId, totalSeats: nat, isActive: bool) ->
+   (variant {
+      err: text;
+      ok: Vacancy;
+    });
+  adminVerifyUser: (id: UserId) -> ();
+  candidateLogin: (email: text, password: text) ->
+   (variant {
+      err: text;
+      ok: CandidateLoginResult;
+    });
+  chatWithAI: (message: text) -> (text);
+  confirmPayment: (paymentId: PaymentId, transactionId: text) -> ();
+  createApplication: (educationDetails: EducationDetails, preferences:
+   Preferences) -> (ApplicationId);
+  getApplicationById: (id: ApplicationId) -> (opt Application) query;
+  getCandidateByEmail: (email: text) -> (opt text) query;
+  getCandidateById: (id: CandidateId) -> (opt ShortlistedCandidate) query;
+  getCandidateProfile: (registrationNo: text) -> (opt AdminCandidate) query;
+  getCircleById: (id: CircleId) -> (opt Circle) query;
+  getMyApplications: () -> (vec Application) query;
+  getMyPayments: () -> (vec Payment) query;
+  getMyProfile: () -> (opt User) query;
+  getNotificationById: (id: NotificationId) -> (opt Notification) query;
+  getPaymentById: (id: PaymentId) -> (opt Payment) query;
+  getUserById: (id: UserId) -> (opt User) query;
+  httpTransform: (args: record {
+                          context: blob;
+                          response: HttpResponse;
+                        }) -> (HttpResponse) query;
+  initiatePayment: (applicationId: ApplicationId, amount: nat, method:
+   PaymentMethod) -> (PaymentId);
+  listActiveNotifications: () -> (vec Notification) query;
+  listActiveOfficialUpdates: () -> (vec OfficialUpdate) query;
+  listAllCandidates: () -> (vec ShortlistedCandidate) query;
+  listAllCircles: () -> (vec Circle) query;
+  listCandidatesByCircle: (circle: text) -> (vec ShortlistedCandidate) query;
+  listCandidatesByState: (stateName: text) ->
+   (vec ShortlistedCandidate) query;
+  listCirclesByState: (stateName: text) -> (vec Circle) query;
+  listOfficialUpdatesByCategory: (category: UpdateCategory) ->
+   (vec OfficialUpdate) query;
+  listStates: () -> (vec text) query;
+  registerUser: (name: text, mobile: text, email: text, aadhaar: text, dob:
+   text, gender: text, category: text, subcategory: text, address:
+   AddressType) -> (UserId);
+  requestOTP: (contact: text) -> (bool);
+  submitApplication: (id: ApplicationId) -> ();
+  updateApplication: (id: ApplicationId, educationDetails: EducationDetails,
+   preferences: Preferences) -> ();
+  updatePhotoUrl: (url: text) -> ();
+  updateProfile: (name: text, dob: text, gender: text, category: text,
+   subcategory: text, address: AddressType) -> ();
+  updateSignatureUrl: (url: text) -> ();
+  verifyOTP: (contact: text, code: text) -> (bool);
+}

@@ -1,0 +1,310 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-display: Fraunces, serif;
+    --font-body: "DM Sans", sans-serif;
+    --font-mono: "Geist Mono", monospace;
+    --radius: 0.5rem;
+
+    --background: 0.98 0 0;
+    --foreground: 0.18 0.02 263;
+    --card: 0.99 0 0;
+    --card-foreground: 0.18 0.02 263;
+    --popover: 0.99 0 0;
+    --popover-foreground: 0.18 0.02 263;
+
+    --primary: 0.35 0.16 263;
+    --primary-foreground: 0.98 0 0;
+
+    --secondary: 0.9 0.04 263;
+    --secondary-foreground: 0.2 0.04 263;
+    --muted: 0.88 0 0;
+    --muted-foreground: 0.5 0.02 263;
+
+    --accent: 0.7 0.24 72;
+    --accent-foreground: 0.15 0 0;
+
+    --destructive: 0.55 0.22 25;
+    --destructive-foreground: 0.98 0 0;
+
+    --border: 0.92 0.01 263;
+    --input: 0.95 0 0;
+    --ring: 0.35 0.16 263;
+
+    --chart-1: 0.35 0.16 263;
+    --chart-2: 0.7 0.24 72;
+    --chart-3: 0.55 0.18 142;
+    --chart-4: 0.65 0.12 99;
+    --chart-5: 0.45 0.14 263;
+
+    --sidebar: 0.22 0.04 263;
+    --sidebar-foreground: 0.95 0 0;
+    --sidebar-primary: 0.7 0.24 72;
+    --sidebar-primary-foreground: 0.18 0 0;
+    --sidebar-accent: 0.85 0 0;
+    --sidebar-accent-foreground: 0.2 0.04 263;
+    --sidebar-border: 0.32 0.04 263;
+    --sidebar-ring: 0.7 0.24 72;
+
+    /* Admin-specific tokens */
+    --admin-bg: 0.97 0 0;
+    --admin-sidebar: 0.25 0.02 263;
+    --admin-sidebar-foreground: 0.93 0 0;
+    --admin-sidebar-accent: 0.55 0.18 132;
+    --admin-sidebar-border: 0.55 0.18 132;
+    --admin-card: 0.99 0 0;
+    --admin-table-alt: 0.95 0.01 263;
+    --admin-success: 0.65 0.16 142;
+    --admin-warning: 0.72 0.18 72;
+    --admin-danger: 0.55 0.22 25;
+    --admin-header: 0.24 0.02 263;
+  }
+
+  .dark {
+    --background: 0.12 0.02 263;
+    --foreground: 0.92 0 0;
+    --card: 0.16 0.02 263;
+    --card-foreground: 0.92 0 0;
+    --popover: 0.2 0.02 263;
+    --popover-foreground: 0.92 0 0;
+
+    --primary: 0.6 0.16 263;
+    --primary-foreground: 0.12 0 0;
+
+    --secondary: 0.22 0.02 263;
+    --secondary-foreground: 0.8 0 0;
+    --muted: 0.2 0.02 263;
+    --muted-foreground: 0.6 0 0;
+
+    --accent: 0.72 0.22 72;
+    --accent-foreground: 0.12 0 0;
+
+    --destructive: 0.65 0.19 22;
+    --destructive-foreground: 0.12 0 0;
+
+    --border: 0.24 0.02 263;
+    --input: 0.22 0.02 263;
+    --ring: 0.72 0.22 72;
+
+    --chart-1: 0.6 0.16 263;
+    --chart-2: 0.72 0.22 72;
+    --chart-3: 0.65 0.18 142;
+    --chart-4: 0.7 0.14 99;
+    --chart-5: 0.55 0.14 263;
+
+    --sidebar: 0.14 0.02 263;
+    --sidebar-foreground: 0.9 0 0;
+    --sidebar-primary: 0.72 0.22 72;
+    --sidebar-primary-foreground: 0.12 0 0;
+    --sidebar-accent: 0.26 0.02 263;
+    --sidebar-accent-foreground: 0.8 0 0;
+    --sidebar-border: 0.2 0.02 263;
+    --sidebar-ring: 0.72 0.22 72;
+
+    /* Admin-specific tokens (dark mode) */
+    --admin-bg: 0.14 0.01 263;
+    --admin-sidebar: 0.12 0.01 263;
+    --admin-sidebar-foreground: 0.88 0 0;
+    --admin-sidebar-accent: 0.65 0.18 132;
+    --admin-sidebar-border: 0.65 0.18 132;
+    --admin-card: 0.18 0.02 263;
+    --admin-table-alt: 0.2 0.02 263;
+    --admin-success: 0.72 0.14 142;
+    --admin-warning: 0.78 0.16 72;
+    --admin-danger: 0.62 0.2 25;
+    --admin-header: 0.16 0.02 263;
+  }
+
+  * {
+    @apply border-border;
+    box-sizing: border-box;
+  }
+
+  html {
+    overflow-x: hidden;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  /* Typography hierarchy */
+  h1 {
+    @apply text-2xl sm:text-3xl font-bold leading-tight tracking-tight;
+  }
+  h2 {
+    @apply text-xl sm:text-2xl font-semibold leading-snug;
+  }
+  h3 {
+    @apply text-lg font-semibold leading-snug;
+  }
+  h4 {
+    @apply text-base font-semibold leading-normal;
+  }
+  h5 {
+    @apply text-sm font-semibold leading-normal;
+  }
+  h6 {
+    @apply text-xs font-semibold leading-normal uppercase tracking-wide;
+  }
+
+  /* Smooth focus for all interactive elements */
+  button,
+  a,
+  input,
+  select,
+  textarea {
+    @apply transition-colors duration-150;
+  }
+}
+
+@layer components {
+  .form-input {
+    @apply w-full rounded-md border border-input bg-card px-3 py-2 text-sm text-foreground
+           placeholder:text-muted-foreground/60
+           focus:outline-none focus:ring-2 focus:ring-ring focus:border-ring
+           disabled:opacity-50 disabled:cursor-not-allowed
+           transition-colors duration-150;
+  }
+}
+
+@layer utilities {
+  .transition-smooth {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .skeleton {
+    @apply bg-muted animate-pulse rounded;
+  }
+  .skeleton-text {
+    @apply h-4 rounded-sm bg-muted animate-pulse;
+  }
+
+  /* Hide scrollbar completely */
+  .scrollbar-none {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Subtle thin scrollbar for scrollable panels */
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: oklch(0.82 0.01 263) transparent;
+  }
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background-color: oklch(0.82 0.01 263);
+    border-radius: 9999px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    background-color: oklch(0.7 0.02 263);
+  }
+  .animate-marquee {
+    display: inline-block;
+    animation: marquee 30s linear infinite;
+  }
+  .animate-marquee-ticker {
+    display: inline-block;
+    will-change: transform;
+    animation: marquee-ticker 50s linear infinite;
+  }
+  @keyframes marquee {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+  @keyframes marquee-ticker {
+    0% {
+      transform: translateX(100vw);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+
+  /* India Post brand colors */
+  .text-india-post-red {
+    color: #b22222;
+  }
+  .bg-india-post-red {
+    background-color: #b22222;
+  }
+  .text-india-post-orange {
+    color: #ff6600;
+  }
+  .bg-india-post-orange {
+    background-color: #ff6600;
+  }
+  .bg-govt-dark {
+    background-color: #154360;
+  }
+  .text-govt-dark {
+    color: #154360;
+  }
+  .border-india-post-red {
+    border-color: #b22222;
+  }
+
+  /* Admin UI utilities */
+  .admin-badge-success {
+    @apply inline-block px-2 py-1 text-xs font-medium rounded-sm bg-admin-success text-white;
+  }
+  .admin-badge-warning {
+    @apply inline-block px-2 py-1 text-xs font-medium rounded-sm bg-admin-warning text-white;
+  }
+  .admin-badge-danger {
+    @apply inline-block px-2 py-1 text-xs font-medium rounded-sm bg-admin-danger text-white;
+  }
+  .admin-badge-pending {
+    @apply inline-block px-2 py-1 text-xs font-medium rounded-sm bg-amber-100 text-amber-800;
+  }
+  .admin-badge-blue {
+    @apply inline-block px-2 py-1 text-xs font-medium rounded-sm bg-blue-600 text-white;
+  }
+  .admin-table-row-alt {
+    @apply bg-admin-table-alt;
+  }
+  .admin-sidebar-active {
+    @apply border-l-4 border-admin-sidebar-border;
+    background-color: oklch(var(--admin-sidebar-accent) / 0.2);
+  }
+}
+
+@font-face {
+  font-family: "DM Sans";
+  src: url("/assets/fonts/DMSans.woff2") format("woff2");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 100 900;
+}
+
+@font-face {
+  font-family: "Fraunces";
+  src: url("/assets/fonts/Fraunces.woff2") format("woff2");
+  font-display: swap;
+  font-style: normal;
+  font-variation-settings: "slnt" 0;
+}
+
+@font-face {
+  font-family: "Geist Mono";
+  src: url("/assets/fonts/GeistMono.woff2") format("woff2");
+  font-display: swap;
+}

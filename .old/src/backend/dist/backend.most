@@ -1,0 +1,360 @@
+// Version: 1.0.0
+type AddressInfo__744414561 =
+  {
+    district : Text;
+    doorNo : Text;
+    pincode : Text;
+    state : Text;
+    street : Text;
+    village : Text
+  };
+type AddressType__137202765 =
+  {
+    city : Text;
+    district : Text;
+    doorNo : Text;
+    pincode : Text;
+    state : Text;
+    street : Text
+  };
+type AdminCandidateId__436995673 = Nat;
+type AdminCandidateId__982731278 = AdminCandidateId__436995673;
+type AdminCandidateStatus__393467894 =
+  {#Approved; #Pending; #Rejected; #Verified};
+type AdminCandidate__10239425 =
+  {
+    aadhaar : Text;
+    applicationFormData : ?Text;
+    boardName : Text;
+    boardRemarks : Text;
+    canRideBicycle : Bool;
+    category : Text;
+    circle : Text;
+    createdAt : Int;
+    declarationsAccepted : Bool;
+    division : Text;
+    divisionForVerification : Text;
+    dob : Text;
+    email : Text;
+    fatherName : Text;
+    feeStatus : FeeStatus__102277176;
+    gender : Text;
+    id : AdminCandidateId__436995673;
+    isEmployed : Bool;
+    mobile : Text;
+    name : Text;
+    nocAvailable : Bool;
+    percentageObtained : Text;
+    permanentAddress : AddressInfo__744414561;
+    ph : Bool;
+    photoPath : Text;
+    postPreferences : [PostPreference__514065043];
+    presentAddress : AddressInfo__744414561;
+    registrationNo : Text;
+    rejectionReason : Text;
+    resultType : ResultType__1072506786;
+    signaturePath : Text;
+    stateOfBoard : Text;
+    status : AdminCandidateStatus__393467894;
+    subjectMarks : [SubjectMark__395969952];
+    totalCgpa : Text;
+    totalGrade : Text;
+    updatedAt : Int;
+    yearOfPassing : Text
+  };
+type AdminCandidate__615390228 = AdminCandidate__10239425;
+type ApplicationId__702901380 = Nat;
+type ApplicationStatus__511886962 =
+  {#draft; #rejected; #shortlisted; #submitted; #underReview};
+type Application__927026856 =
+  {
+    createdAt : Timestamp__301639476;
+    documentUrls : [Text];
+    educationDetails : EducationDetails__977694202;
+    id : ApplicationId__702901380;
+    paymentStatus : PaymentStatus__1050999476;
+    preferences : Preferences__909505810;
+    status : ApplicationStatus__511886962;
+    submittedAt : ?Timestamp__301639476;
+    userId : UserId__158757552
+  };
+type CandidateId__359602160 = Nat;
+type CircleId__836840701 = Nat;
+type Circle__456248252 =
+  {
+    circleName : Text;
+    divisions : [Division__400694872];
+    id : CircleId__836840701;
+    stateName : Text
+  };
+type Data__791452850<K, V> =
+  {var count : Nat__490723111; kvs : [var ?(K, V)]};
+type Division__400694872 =
+  {id : Nat; name : Text; posts : [Post__1028162479]};
+type DocumentId__14502668 = DocumentId__481725675;
+type DocumentId__481725675 = Nat;
+type DocumentType__462118145 =
+  {
+    #Aadhaar;
+    #AttestationForm;
+    #CasteCertificate;
+    #CharacterCertificate;
+    #ComputerCertificate;
+    #Domicile;
+    #IdentityCertificate;
+    #IncomeCertificate;
+    #MedicalCertificate;
+    #PanCard;
+    #Photo;
+    #RegistrationForm;
+    #Signature;
+    #TenthCertificate;
+    #TwelfthCertificate
+  };
+type Document__416133026 = Document__887902057;
+type Document__887902057 =
+  {
+    candidateId : AdminCandidateId__436995673;
+    documentType : DocumentType__462118145;
+    fileKey : Text;
+    fileName : Text;
+    id : DocumentId__481725675;
+    registrationNo : Text;
+    uploadedAt : Int
+  };
+type EducationDetails__977694202 =
+  {
+    boardName : Text;
+    marksObtained : Nat;
+    percentage : Float;
+    totalMarks : Nat;
+    yearOfPassing : Text
+  };
+type FeeStatus__102277176 = {#Failed; #Paid; #Pending};
+type HttpHeader__837997805 = {name : Text; value : Text};
+type HttpMethod__1061600257 = {#get; #head; #post};
+type HttpRequest__103655718 =
+  {
+    body : ?Blob;
+    headers : [HttpHeader__837997805];
+    max_response_bytes : ?Nat64;
+    method : HttpMethod__1061600257;
+    transform : ?TransformContext__317856509;
+    url : Text
+  };
+type HttpResponse__280953736 =
+  {body : Blob; headers : [HttpHeader__837997805]; status : Nat};
+type Internal__8484328<K, V> =
+  {children : [var ?Node__46230540<K, V>]; data : Data__791452850<K, V>};
+type Leaf__809889148<K, V> = {data : Data__791452850<K, V>};
+type Nat__490723111 = Nat__920180692;
+type Nat__920180692 = Nat;
+type Node__46230540<K, V> =
+  {#internal : Internal__8484328<K, V>; #leaf : Leaf__809889148<K, V>};
+type NotifType__970094428 = {#general; #important; #urgent};
+type NotificationId__307495059 = Nat;
+type Notification__642398496 =
+  {
+    content : Text;
+    createdBy : UserId__158757552;
+    date : Timestamp__301639476;
+    id : NotificationId__307495059;
+    isActive : Bool;
+    notifType : NotifType__970094428;
+    title : Text
+  };
+type OTPRecord__549685598 =
+  {
+    code : Text;
+    contact : Text;
+    expiresAt : Timestamp__301639476;
+    id : Nat;
+    verified : Bool
+  };
+type OfficialUpdate__257094556 =
+  {
+    category : UpdateCategory__532245096;
+    content : Text;
+    createdBy : Text;
+    date : Timestamp__301639476;
+    id : Text;
+    isActive : Bool;
+    isNew : Bool;
+    pdfUrl : ?Text;
+    title : Text
+  };
+type PaymentId__1028686908 = Nat;
+type PaymentMethod__46913440 = {#card; #netbanking; #upi};
+type PaymentStatus__1050999476 = {#failed; #notRequired; #pending; #success};
+type Payment__674851204 =
+  {
+    amount : Nat;
+    applicationId : ApplicationId__702901380;
+    createdAt : Timestamp__301639476;
+    id : PaymentId__1028686908;
+    method : PaymentMethod__46913440;
+    status : PaymentStatus__1050999476;
+    transactionId : Text;
+    userId : UserId__158757552
+  };
+type PostPreference__514065043 =
+  {
+    basicPay : Nat;
+    branchOfficeName : Text;
+    category : Text;
+    postType : Text;
+    preferenceNo : Nat
+  };
+type Post__1028162479 =
+  {
+    category : Text;
+    obcPosts : Nat;
+    scPosts : Nat;
+    stPosts : Nat;
+    totalPosts : Nat;
+    urPosts : Nat
+  };
+type Preferences__909505810 =
+  {circle : Text; division : Text; postCategory : Text; state : Text};
+type ResultType__1072506786 = {#CGPA; #GradePoint; #Percentage};
+type ShortlistedCandidate__902593356 =
+  {
+    applicationId : ApplicationId__702901380;
+    candidateName : Text;
+    category : Text;
+    circle : Text;
+    division : Text;
+    id : CandidateId__359602160;
+    rank : Nat;
+    rollNumber : Text;
+    state : Text
+  };
+type SubjectMark__395969952 = {marksOrGrade : Text; subject : Text};
+type Timestamp__301639476 = Int;
+type TransformArgs__358391134 =
+  {context : Blob; response : HttpResponse__280953736};
+type TransformContext__317856509 =
+  {context : Blob; function : TransformFn__354132369};
+type TransformFn__354132369 =
+  shared query TransformArgs__358391134 -> async HttpResponse__280953736;
+type UpdateCategory__532245096 = {#officialLetter; #recruitment; #tender};
+type UserId__158757552 = Nat;
+type UserRole__451090586 = {#admin; #applicant};
+type User__640040378 =
+  {
+    aadhaar : Text;
+    address : AddressType__137202765;
+    category : Text;
+    createdAt : Timestamp__301639476;
+    dob : Text;
+    email : Text;
+    gender : Text;
+    id : UserId__158757552;
+    isVerified : Bool;
+    mobile : Text;
+    name : Text;
+    photoUrl : ?Text;
+    principal : Principal;
+    role : UserRole__451090586;
+    signatureUrl : ?Text;
+    subcategory : Text
+  };
+type VacancyId__734974447 = VacancyId__896014631;
+type VacancyId__896014631 = Nat;
+type Vacancy__725711493 = Vacancy__734358522;
+type Vacancy__734358522 =
+  {
+    basicPay : Nat;
+    branchOfficeName : Text;
+    category : Text;
+    circle : Text;
+    createdAt : Int;
+    division : Text;
+    filledSeats : Nat;
+    id : VacancyId__896014631;
+    isActive : Bool;
+    postType : Text;
+    totalSeats : Nat
+  };
+actor {
+  stable IC :
+    actor {
+      http_request :
+        shared HttpRequest__103655718 -> async HttpResponse__280953736
+    };
+  stable adminCandidatesV2 :
+    {
+      var root :
+        Node__46230540<AdminCandidateId__982731278, AdminCandidate__615390228>;
+      var size : Nat__490723111
+    };
+  stable adminDocumentsV3 :
+    {
+      var root : Node__46230540<DocumentId__14502668, Document__416133026>;
+      var size : Nat__490723111
+    };
+  stable adminVacanciesV2 :
+    {
+      var root : Node__46230540<VacancyId__734974447, Vacancy__725711493>;
+      var size : Nat__490723111
+    };
+  stable applications :
+    {
+      var root :
+        Node__46230540<ApplicationId__702901380, Application__927026856>;
+      var size : Nat__490723111
+    };
+  stable candidates :
+    {
+      var root :
+        Node__46230540<CandidateId__359602160,
+                        ShortlistedCandidate__902593356>;
+      var size : Nat__490723111
+    };
+  stable circles :
+    {
+      var root : Node__46230540<CircleId__836840701, Circle__456248252>;
+      var size : Nat__490723111
+    };
+  stable var nextApplicationId : Nat;
+  stable var nextCandidateId : Nat;
+  stable var nextCircleId : Nat;
+  stable var nextNotificationId : Nat;
+  stable var nextOfficialUpdateId : Nat;
+  stable var nextOtpId : Nat;
+  stable var nextPaymentId : Nat;
+  stable var nextUserId : Nat;
+  stable notifications :
+    {
+      var root :
+        Node__46230540<NotificationId__307495059, Notification__642398496>;
+      var size : Nat__490723111
+    };
+  stable officialUpdates :
+    {
+      var root : Node__46230540<Text, OfficialUpdate__257094556>;
+      var size : Nat__490723111
+    };
+  stable otps :
+    {
+      var root : Node__46230540<Text, OTPRecord__549685598>;
+      var size : Nat__490723111
+    };
+  stable payments :
+    {
+      var root : Node__46230540<PaymentId__1028686908, Payment__674851204>;
+      var size : Nat__490723111
+    };
+  stable principalIndex :
+    {
+      var root : Node__46230540<Principal, UserId__158757552>;
+      var size : Nat__490723111
+    };
+  stable var seedDone : Bool;
+  stable thirtyDaysNs : Int;
+  stable users :
+    {
+      var root : Node__46230540<UserId__158757552, User__640040378>;
+      var size : Nat__490723111
+    }
+};

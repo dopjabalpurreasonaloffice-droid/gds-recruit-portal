@@ -1,0 +1,24 @@
+{
+  "overview": "India Post GDS Online Recruitment Portal clone with two admin panels — one for managing candidate registrations and one for managing website content. Candidates registered by admin can log in with their registration number and mobile number to view their details and application status.",
+  "features": [
+    "Admin-registered candidate storage with permanent backend persistence",
+    "Candidate login via registration number + mobile number",
+    "Candidate dashboard with read-only registration details and status",
+    "Admin dashboard cleanup (removed status badges)",
+    "Fixed full-width form layouts in Register Candidate and Supplementary Registration",
+    "No extra scroll gap between header and form content",
+    "Two separate admin panels (candidate management + website content)",
+    "Official GDS PDF-format printouts"
+  ],
+  "category": "government-recruitment-portal",
+  "tags": [
+    "government",
+    "recruitment",
+    "india-post",
+    "gds",
+    "admin-portal",
+    "candidate-management",
+    "registration"
+  ],
+  "last_updated": "2026-04-25T06:10:13.447Z"
+}
